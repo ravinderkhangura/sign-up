@@ -1,0 +1,250 @@
+<html>
+
+
+    <head>
+    
+<title>sign-up</title>    
+        
+        
+        
+    <link rel="stylesheet" href="css/sign-up.css">
+        <link rel="stylesheet" href="css/fontawesome-all.css">
+        
+        <script src="java-script/fontawesome-all.js"></script>
+        
+        <script type="application/javascript" >
+            
+            var flag=0;
+        
+        
+        function chkfempty(nme,erfname)
+            {
+                var len = nme.length;
+                if(len==0)
+                    {
+                        erfname.innerHTML="*enter first name";
+                        flag=1;
+                    }
+                else
+                {erfname.innerHTML="";
+                    flag=0;        
+                }
+                
+            }
+          
+            
+            function chklempty(nme,erlname)
+            {
+                var len = nme.length;
+                if(len==0)
+                    {
+                        erlname.innerHTML="*enter last name";
+                        flag=1;
+                    }
+                else
+                {erlname.innerHTML="";
+                 flag=0;
+                }
+            }
+        
+            
+          function chkemail(nme,eremail)
+            {
+                var len = nme.length;
+                if(len==0)
+                    {
+                        eremail.innerHTML="*enter email-address";
+                        flag=1;
+                        return;
+                    }
+                else
+                  {  eremail.innerHTML="";
+                flag=0;
+                  }
+                
+                
+                var r=/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/ ;
+                if(r.test(nme)==false)
+                    {
+                        eremail.innerHTML="*invalid email-address";
+                        flag=1;
+                    }
+                   else
+                   {eremail.innerHTML="";
+                   flag=0;
+                   }
+            }
+            
+             
+        function chkuser(nme,eruser)
+            {
+                var len = nme.length;
+                if(len==0)
+                    {
+                        eruser.innerHTML="*enter user-name";
+                        flag=1;
+                    }
+                else
+                {eruser.innerHTML="";
+                 flag=0;
+            }
+            
+            }
+            
+                function chkpwdempty(nme,erpwd)
+            {
+                var len = nme.length;
+                if(len==0)
+                    {
+                        erpwd.innerHTML="*enter password";
+                        flag=1;
+                        
+                    }
+                else
+                  {
+                    erpwd.innerHTML="";
+                      flag=0;
+            }
+            }
+            
+            function pwd(nme,erpwd)
+            {
+                var len =nme.length;
+                if(len==0)
+                    {
+                        erpwd.innerHTML="";
+                        return;
+                    }
+             
+                var r =/(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
+                
+                 
+                if(r.test(nme)==true)
+                    {
+                        erpwd.innerHTML="strong";
+                        erpwd.style.color="white";
+                    }
+              else
+              {
+                   erpwd.innerHTML="weak";
+                        erpwd.style.color="white";
+              }
+                    
+           }
+            
+            
+            function match(nme,errepwd)
+            {
+                var pss = document.getElementById("pass").value;
+                
+                if(nme==pss)
+                    {
+                        errepwd.innerHTML="";
+                        flag=0;
+                    }
+                else
+                      
+                {
+                     errepwd.innerHTML="*password donot match";
+                        flag=1;
+                    
+                }
+                
+                
+                
+                if(nme.length==0)
+                    {
+                        errepwd.innerHTML="*invalid";
+                        flag=1;
+                    }
+              
+            }
+            
+            
+            function docreate()
+            {
+                if(flag==0)
+                alert("New Account Created");
+                else
+                    alert("fill the information correctly");
+                    
+            }
+            
+            
+        
+        </script>
+    
+    
+    </head>
+
+    <body>
+        
+        
+    <div id="base">
+        
+        <div id="pic"></div>
+        <div id="farm">
+        <div id="heading">Create New Account</div>
+            <div id="tab">
+                
+                <table width=100% >
+                    <tr height=20px;><td></td><td></td><td width="150px"></td></tr>
+                    <tr><td width="100px"><label>Name</label></td>
+                        <td><input type="text" id="fname" onblur="chkfempty(this.value,erfname);" autofocus placeholder="first-name"></td>
+                        <td width="150px"><div class="err" id="erfname" ></div></td>
+                    
+                    
+                    </tr>
+                 
+                   
+                    <tr><td width="100px"></td>
+                        <td><input type="text" onblur="chklempty(this.value,erlname);" placeholder="last-name" ></td>
+                        <td width="150px"><div class="err" id="erlname" ></div></td>
+                    
+                    
+                    </tr>
+                
+                   <tr height=20px;><td></td><td></td></tr>
+                    <tr><td width="100px"><label>E-mail</label></td>
+                        <td><input type="text" onblur="chkemail(this.value,eremail);" placeholder="email-address"></td>
+                        <td><div class="err" id="eremail" ></div></td>
+                    </tr>
+                      <tr height=10px;><td></td><td></td></tr>
+                    <tr><td width="100px"><label>User Name</label></td>
+                        <td><input type="text" onblur="chkuser(this.value,eruser);"  placeholder="user-name"></td>
+                        <td  ><div class="err" id="eruser" ></div></td>
+                    
+                      <tr height=10px;><td></td><td></td></tr>
+                    <tr><td width="100px"><label>Password</label></td>
+                        <td><input type="password" id="pass" onblur="chkpwdempty(this.value,erpwd);" onkeyup="pwd(this.value,erpwd);"  placeholder="password"></td>
+                        <td><div class="err" id="erpwd" ></div></td>
+                        
+                         <tr><td width="100px"><label>Re-Enter Password</label></td>
+                        <td><input type="password" onblur="match(this.value,errepwd)" placeholder="re-enter password"></td>
+                        <td><div class="err" id="errepwd" ></div></td>
+                    
+                    
+                                <tr height=10px;><td></td><td></td><td></td></tr>
+                    <tr><td width="100px"></td>
+                        <td></td>
+                        <td height="30px" ><input type="button" onclick="docreate();"  value="create"></td>
+                
+                     </tr>
+                
+                </table>
+                
+            </div>
+        
+        
+        
+        
+        </div>
+        
+        </div>
+    
+    
+    </body>
+
+
+
+</html>  
